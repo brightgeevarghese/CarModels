@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CarModels</string>
+    <string name="mercedes_benz">Mercedes Benz</string>
+    <string name="toyota_prius">Toyota Prius</string>
+    <string name="chevrolet">Chevrolet</string>
+    <string name="tesla">Tesla</string>
+</resources>
