@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,12 +61,12 @@ fun CarListScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
             )
-            LazyRow (modifier = Modifier) {
-                items(DataSource().loadCarModels()) {
-                    CarCard(
-                        car = it,
-                        modifier = Modifier.padding(4.dp)
-                    )
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(DataSource().loadCarModels()) { car ->
+                    CarCard(car = car)
                 }
             }
         }
@@ -79,18 +81,21 @@ fun CarCard(car: Car, modifier: Modifier = Modifier) {
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Image(
-            painter = painterResource(id = car.imageResourceId),
-            contentDescription = stringResource(id = car.stringResourceId),
-            modifier = modifier
-                .height(194.dp)
-                .width(352.dp),
-            contentScale = ContentScale.Crop
-        )
-        Text(
-            text = stringResource(id = car.stringResourceId),
-            style = MaterialTheme.typography.headlineSmall
-        )
+        Column {
+            Image(
+                painter = painterResource(id = car.imageResourceId),
+                contentDescription = stringResource(id = car.stringResourceId),
+                modifier = Modifier
+                    .height(194.dp)
+                    .width(352.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = stringResource(id = car.stringResourceId),
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
     }
 }
 
