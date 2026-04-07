@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -60,7 +61,7 @@ fun CarList(carList: List<Car>, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
         )
-        LazyRow(modifier = Modifier) {
+        LazyRow (modifier = Modifier) {
             items(carList) {
                 CarCard(
                     car = it,
@@ -78,20 +79,18 @@ fun CarCard(car: Car, modifier: Modifier = Modifier) {
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Column {
-            Image(
-                painter = painterResource(id = car.imageResourceId),
-                contentDescription = stringResource(id = car.stringResourceId),
-                modifier = modifier
-                    .height(194.dp)
-                    .width(352.dp),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = stringResource(id = car.stringResourceId),
-                style = MaterialTheme.typography.headlineSmall
-            )
-        }
+        Image(
+            painter = painterResource(id = car.imageResourceId),
+            contentDescription = stringResource(id = car.stringResourceId),
+            modifier = modifier
+                .height(194.dp)
+                .width(352.dp),
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            text = stringResource(id = car.stringResourceId),
+            style = MaterialTheme.typography.headlineSmall
+        )
     }
 }
 
