@@ -38,38 +38,38 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CarModelsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CarApp(Modifier.padding(innerPadding))
+                CarListScreen()
+            }
+        }
+    }
+}
+
+
+@Composable
+fun CarListScreen(modifier: Modifier = Modifier) {
+    Scaffold { innerPadding ->
+        Column(
+            modifier = modifier
+                .padding(innerPadding)
+        ) {
+            Text(
+                text = "Car Models",
+                style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            LazyRow (modifier = Modifier) {
+                items(DataSource().loadCarModels()) {
+                    CarCard(
+                        car = it,
+                        modifier = Modifier.padding(4.dp)
+                    )
                 }
             }
         }
     }
-}
 
-@Composable
-fun CarApp(modifier: Modifier = Modifier) {
-    CarList(carList = DataSource().loadCarModels(), modifier = modifier)
-}
-
-@Composable
-fun CarList(carList: List<Car>, modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
-        Text(
-            text = "Car Models",
-            style = MaterialTheme.typography.headlineLarge,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
-        LazyRow (modifier = Modifier) {
-            items(carList) {
-                CarCard(
-                    car = it,
-                    modifier = Modifier.padding(4.dp)
-                )
-            }
-        }
-    }
 
 }
 
@@ -99,8 +99,8 @@ fun CarCard(car: Car, modifier: Modifier = Modifier) {
     showSystemUi = true
 )
 @Composable
-fun CarsAppPreview() {
+fun CarListScreenPreview() {
     CarModelsTheme {
-        CarApp()
+        CarListScreen()
     }
 }
