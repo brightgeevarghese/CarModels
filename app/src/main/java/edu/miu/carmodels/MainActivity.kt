@@ -81,7 +81,6 @@ fun CarCard(car: Car, modifier: Modifier = Modifier) {
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Column {
             Image(
                 painter = painterResource(id = car.imageResourceId),
                 contentDescription = stringResource(id = car.stringResourceId),
@@ -95,7 +94,6 @@ fun CarCard(car: Car, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(8.dp)
             )
-        }
     }
 }
 
